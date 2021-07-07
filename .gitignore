@@ -1,0 +1,5 @@
+/.htaccess
+/cache/*
+!/cache/.gitkeep
+/config/*
+!/config/.gitkeep
