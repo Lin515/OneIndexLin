@@ -1,4 +1,3 @@
-/.htaccess
 /cache/*
 !/cache/.gitkeep
 /config/*
