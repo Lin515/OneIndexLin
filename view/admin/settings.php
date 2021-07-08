@@ -29,7 +29,7 @@
 		</div>
 		
 		<div class="mdui-textfield">
-		  <h4>网站背景图</h4>
+		  <h4>网站背景图<small> 开启伪静态后此处需使用完整地址</small></h4>
 		  <input class="mdui-textfield-input" type="text" name="site_background" value="<?php echo $config['site_background'];?>"/>
 		</div>
 		
