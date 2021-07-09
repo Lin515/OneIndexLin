@@ -33,14 +33,68 @@ function file_ico($item) {
 </div>
 <?php endif;?>
 <style>
-.thumb .th{display:none;}.thumb .mdui-text-right{display:none;}.thumb .mdui-list-item a,.thumb .mdui-list-item{width:217px;height:230px;float:left;margin:10px 10px !important;}.thumb .mdui-col-xs-12,.thumb .mdui-col-sm-7{width:100% !important;height:230px;}.thumb .mdui-list-item .mdui-icon{font-size:100px;display:block;margin-top:40px;color:#7ab5ef;}.thumb .mdui-list-item span{float:left;display:block;text-align:center;width:100%;position:absolute;top:180px;}.simple-spinner{height:100%;border:8px solid rgba(150,150,150,0.2);border-radius:50%;border-top-color:rgb(150,150,150);animation:rotate 1s 0s infinite ease-in-out alternate;}@keyframes rotate{0%{transform:rotate(0);}100%{transform:rotate(360deg);}}
+.thumb .th {
+	display: none;
+}
+
+.thumb .mdui-text-right {
+	display: none;
+}
+
+.thumb .mdui-list-item a,.thumb .mdui-list-item {
+	width: 217px;
+	height: 230px;
+	float: left;
+	margin: 10px 10px !important;
+}
+
+.thumb .mdui-col-xs-12,.thumb .mdui-col-sm-7 {
+	width: 100% !important;
+	height: 230px;
+}
+
+.thumb .mdui-list-item .mdui-icon {
+	font-size: 100px;
+	display: block;
+	margin-top: 40px;
+	color: #7ab5ef;
+}
+
+.thumb .mdui-list-item span {
+	float: left;
+	display: block;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	top: 180px;
+}
+
+.simple-spinner {
+	height: 100%;
+	border: 8px solid rgba(150,150,150,0.2);
+	border-radius: 50%;
+	border-top-color: rgb(150,150,150);
+	animation: rotate 1s 0s infinite ease-in-out alternate;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
 </style>
 <div class="nexmoe-item">
 	<div class="mdui-row">
 		<ul class="mdui-list">
 			<li class="mdui-list-item th" id="indexsort">
-				<label class="mdui-checkbox"><input type="checkbox" value="" id="checkall" onclick="checkall()">
-				<i class="mdui-checkbox-icon"></i></label>
+				<label class="mdui-checkbox">
+					<input type="checkbox" value="" id="checkall" onclick="checkall()">
+					<i class="mdui-checkbox-icon"></i>
+				</label>
 				<input class="mdui-textfield-input" type="text" id="filteredit" placeholder="搜索当前目录" autofocus />
 				<button class="mdui-btn mdui-ripple" id="sharebtn">获取链接</button>
 			</li>
@@ -63,15 +117,12 @@ function file_ico($item) {
 			<?php foreach((array)$items as $item):?>
 				<?php if(!empty($item['folder'])):?>
 
-			<li class="mdui-list-item mdui-ripple filter" data-sort
-						data-sort-name="<?php echo $item['name'] ;?>"
-						data-sort-date="<?php echo $item['lastModifiedDateTime'];?>"
-						data-sort-size="<?php echo $item['size'];?>"
-						id="<?php echo $item["id"] ?>">
+			<li class="mdui-list-item mdui-ripple filter" id="<?php echo $item["id"] ?>">
 				<div class="simple-spinner loading-gif" style="display: none;"></div>
 				<label class="mdui-checkbox">
-					<input type="checkbox" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
-					<i class="mdui-checkbox-icon"></i></label>
+					<input type="checkbox" id="check" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
+					<i class="mdui-checkbox-icon"></i>
+				</label>
 				<a href="<?php echo get_absolute_path($root.$path.rawurlencode($item['name']));?>">
 				<div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 					<i class="mdui-icon material-icons">folder_open</i>
@@ -82,15 +133,12 @@ function file_ico($item) {
 				</a>
 			</li>
 				<?php else:?>
-			<li class="mdui-list-item file mdui-ripple filter" data-sort
-						data-sort-name="<?php echo $item['name'];?>"
-						data-sort-date="<?php echo $item['lastModifiedDateTime'];?>"
-						data-sort-size="<?php echo $item['size'];?>"
-						id="<?php echo $item["id"] ?>">
+			<li class="mdui-list-item file mdui-ripple filter" id="<?php echo $item["id"] ?>">
 				<div class="simple-spinner loading-gif" style="display: none;"></div>
 				<label class="mdui-checkbox">
 					<input type="checkbox" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
-					<i class="mdui-checkbox-icon"></i></label>
+					<i class="mdui-checkbox-icon"></i>
+				</label>
 				<a href="<?php echo get_absolute_path($root.$path).rawurlencode($item['name']);?>" target="_blank">
 				<div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 					<i class="mdui-icon material-icons"><?php echo file_ico($item);?></i>
@@ -130,7 +178,7 @@ function file_ico($item) {
  <div class="mdui-dialog" id="share">
     <div class="mdui-dialog-content">
 			<div class="mdui-textfield mdui-textfield-floating-label">
-				<label class="mdui-textfield-label">选中的项目链接</label>
+				<label class="mdui-textfield-label">请手动复制以下链接</label>
 				<textarea class="mdui-textfield-input" style="margin: 20px 0;" rows="5" readonly id="sharelinks"></textarea>
 			</div>
 	</div>

@@ -5,14 +5,15 @@ class IndexController{
 	private $path;
 	private $items;
 	private $time;
+	private $paths;
 
 	function __construct() {
 		//获取路径和文件名
-		$paths = explode('/', rawurldecode($_GET['path']));
+		$this->paths = explode('/', rawurldecode($_GET['path']));
 		if(substr($_SERVER['REQUEST_URI'], -1) != '/') {
-			$this->name = array_pop($paths);
+			$this->name = array_pop($this->paths);
 		}
-		$this->url_path = get_absolute_path(join('/', $paths));
+		$this->url_path = get_absolute_path(join('/', $this->paths));
 		$this->path = get_absolute_path(config('onedrive_root').$this->url_path);
 		//获取文件夹下所有元素
 		$this->items = $this->items($this->path);
@@ -129,7 +130,7 @@ class IndexController{
 			}
 		}
 
-		return view::load('list')->with('title', empty(str_replace("/","",urldecode($this->url_path)))?"根目录":str_replace("/","",urldecode($this->url_path)))
+		return view::load('list')->with('title', strcmp(urldecode($this->url_path),"/")==0?"根目录":$this->paths[count($this->paths)-1])
 					->with('navs', $navs)
 					->with('path',join("/", array_map("rawurlencode", explode("/", $this->url_path)))  )
 					->with('root', $root)

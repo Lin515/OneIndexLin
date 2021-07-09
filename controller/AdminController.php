@@ -15,14 +15,13 @@ class AdminController{
 	  'cache_refresh_time' => 600,
 	  'root_path' => '?',
 	  'show'=> array (
-	  	'stream'=>['txt'],
+	  	'stream'=>['txt','pdf'],
 	    'image' => ['bmp','jpg','jpeg','png','gif'],
 	    'video5'=>['mp4','webm','mkv'],
 	    'video'=>[],
 	    'video2'=>['avi','mpg', 'mpeg', 'rm', 'rmvb', 'mov', 'wmv', 'asf', 'ts', 'flv'],
 	    'audio'=>['ogg','mp3','wav'],
 	    'code'=>['html','htm','php', 'css', 'go','java','js','json','txt','sh','md'],
-	    'pdf'=>['pdf'],
 	    'doc'=>['csv','doc','docx','odp','ods','odt','pot','potm','potx','pps','ppsx','ppsxm','ppt','pptm','pptx','rtf','xls','xlsx']
 	  ),
 	);
@@ -125,7 +124,6 @@ class AdminController{
 			'video5'=>'html5视频(video5)',
 			'audio'=>'音频播放(audio)',
 			'code'=>'文本/代码(code)',
-			'pdf'=>'PDF文档(pdf)',
 			'doc'=>'文档(doc)'
 		];
 		$show = config('show');
