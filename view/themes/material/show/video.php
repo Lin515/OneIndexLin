@@ -13,21 +13,30 @@ $item['thumb'] = onedrive::thumbnail($item['path']);
 	  <label class="mdui-textfield-label">下载地址</label>
 	  <input class="mdui-textfield-input" type="text" value="<?php e($url);?>"/>
 	</div>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">引用地址</label>
-	  <textarea class="mdui-textfield-input"><video><source src="<?php e($url);?>" type="video/mp4"></video></textarea>
-	</div>
 </div>
-<?php if(pathinfo($item["name"], PATHINFO_EXTENSION) === 'flv') { e('<script src="https://cdn.jsdelivr.net/npm/flv.js/dist/flv.min.js"></script>'); } ?>
-<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+<?php
+	$ext = strtolower(pathinfo($item['name'], PATHINFO_EXTENSION));
+	$play_url = $item['downloadUrl'];
+	$type = "auto";
+	if ($ext == "flv") {
+		$type = "flv";
+		e('<script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>');
+	// 以下格式仅支持教育版和企业版
+	} else if (in_array($ext,["ts","avi","mpg","mpeg","rm","rmvb","mov","wmv","asf"])) {
+		$type = "dash";
+		$play_url =  str_replace("thumbnail","videomanifest",$item['thumb'])."&part=index&format=dash&useScf=True&pretranscode=0&transcodeahead=0";
+		e('<script src="https://cdn.jsdelivr.net/npm/dashjs@4.0.0-npm/dist/dash.all.min.js"></script>');
+	}
+?>
+<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
 <script>
 const dp = new DPlayer({
 	container: document.getElementById('dplayer'),
 	lang:'zh-cn',
 	video: {
-	    url: '<?php e($item['downloadUrl']);?>',
+	    url: '<?php e($play_url);?>',
 	    pic: '<?php @e($item['thumb']);?>',
-	    type: '<?php e((pathinfo($item["name"], PATHINFO_EXTENSION) === 'flv') ? 'flv' : 'auto'); ?>'
+	    type: '<?php e($type); ?>'
 	}
 });
 </script>

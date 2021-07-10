@@ -1,10 +1,24 @@
-<?php view::layout('layout')?>
 <?php
-$item['thumb'] = onedrive::thumbnail($item['path']);
+	view::layout('layout');
+	$item['thumb'] = onedrive::thumbnail($item['path']);
+	view::begin('content');
 ?>
-<?php view::begin('content');?>
 <link class="dplayer-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+<?php
+	$ext = strtolower(pathinfo($item['name'], PATHINFO_EXTENSION));
+	$play_url = $item['downloadUrl'];
+	$type = "auto";
+	if ($ext == "flv") {
+		$type = "flv";
+		e('<script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>');
+	// 以下格式仅支持教育版和企业版
+	} else if (in_array($ext,["ts","avi","mpg","mpeg","rm","rmvb","mov","wmv","asf"])) {
+		$type = "dash";
+		$play_url =  str_replace("thumbnail","videomanifest",$item['thumb'])."&part=index&format=dash&useScf=True&pretranscode=0&transcodeahead=0";
+		e('<script src="https://cdn.jsdelivr.net/npm/dashjs@4.0.0-npm/dist/dash.all.min.js"></script>');
+	}
+?>
+<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
 <div class="mdui-container-fluid">
 	<div class="nexmoe-item">
 	<div class="mdui-center" id="dplayer"></div>
@@ -22,9 +36,7 @@ $item['thumb'] = onedrive::thumbnail($item['path']);
 			<li class="mdui-menu-item">
 			<a href="nplayer-<?php e($url);?>" class="mdui-ripple">nPlayer</a>
 			</li>
-			
 		</ul>
-
 		<button id="appplayers" class="mdui-btn mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">&#xe039;</i>外部播放器播放<i class="mdui-icon material-icons">&#xe313;</i></button>
 	</div>
 	<!-- 固定标签 -->
@@ -35,20 +47,19 @@ $item['thumb'] = onedrive::thumbnail($item['path']);
 	</div>
 </div>
 <script>
+var inst = new mdui.Menu('#appplayers', '#menu');
+document.getElementById('appplayers').addEventListener('click', function () {
+  inst.open();
+});
+
 const dp = new DPlayer({
 	container: document.getElementById('dplayer'),
 	lang:'zh-cn',
 	video: {
-	    url: '<?php e($item['downloadUrl']);?>',
+	    url: '<?php e($play_url);?>',
 	    pic: '<?php @e($item['thumb']);?>',
-	    type: '<?php e((pathinfo($item["name"], PATHINFO_EXTENSION) === 'flv') ? 'flv' : 'auto'); ?>'
+	    type: '<?php e($type); ?>'
 	}
-});
-var inst = new mdui.Menu('#appplayers', '#menu');
-
-// method
-document.getElementById('appplayers').addEventListener('click', function () {
-  inst.open();
 });
 </script>
 <a href="<?php e($url);?>" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>

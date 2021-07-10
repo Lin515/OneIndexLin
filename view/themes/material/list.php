@@ -1,17 +1,23 @@
 <?php view::layout('layout')?>
-<?php 
-function file_ico($item){
-  $ext = strtolower(pathinfo($item['name'], PATHINFO_EXTENSION));
-  if(in_array($ext,['bmp','jpg','jpeg','png','gif'])){
-  	return "image";
-  }
-  if(in_array($ext,['mp4','mkv','webm','avi','mpg', 'mpeg', 'rm', 'rmvb', 'mov', 'wmv', 'mkv', 'asf'])){
-  	return "ondemand_video";
-  }
-  if(in_array($ext,['ogg','mp3','wav'])){
-  	return "audiotrack";
-  }
-  return "insert_drive_file";
+<?php
+function file_ico($item) {
+	$ext = strtolower(pathinfo($item['name'], PATHINFO_EXTENSION));
+	if ($ext == "") {
+		return "insert_drive_file";
+	}
+	if (in_array($ext,config("show")['image'])) {
+		return "image";
+	}
+	if (in_array($ext,config("show")['video'])) {
+		return "ondemand_video";
+	}
+	if (in_array($ext,config("show")['video5'])) {
+		return "ondemand_video";
+	}
+	if (in_array($ext,config("show")['audio'])) {
+		return "audiotrack";
+	}
+	return "insert_drive_file";
 }
 ?>
 

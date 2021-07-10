@@ -11,9 +11,6 @@ function file_ico($item) {
 	if (in_array($ext,config("show")['video'])) {
 		return "ondemand_video";
 	}
-	if (in_array($ext,config("show")['video2'])) {
-		return "ondemand_video";
-	}
 	if (in_array($ext,config("show")['video5'])) {
 		return "ondemand_video";
 	}
@@ -117,7 +114,9 @@ function file_ico($item) {
 			<?php foreach((array)$items as $item):?>
 				<?php if(!empty($item['folder'])):?>
 
-			<li class="mdui-list-item mdui-ripple filter" id="<?php echo $item["id"] ?>">
+			<li class="mdui-list-item mdui-ripple filter" data-sort
+							data-sort-name="<?php echo $item['name'] ;?>"
+							id="<?php echo $item["id"] ?>" >
 				<div class="simple-spinner loading-gif" style="display: none;"></div>
 				<label class="mdui-checkbox">
 					<input type="checkbox" id="check" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
@@ -133,7 +132,9 @@ function file_ico($item) {
 				</a>
 			</li>
 				<?php else:?>
-			<li class="mdui-list-item file mdui-ripple filter" id="<?php echo $item["id"] ?>">
+			<li class="mdui-list-item file mdui-ripple filter" data-sort
+							data-sort-name="<?php echo $item['name'] ;?>"
+							id="<?php echo $item["id"] ?>" >
 				<div class="simple-spinner loading-gif" style="display: none;"></div>
 				<label class="mdui-checkbox">
 					<input type="checkbox" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">

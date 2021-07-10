@@ -18,8 +18,7 @@ class AdminController{
 	  	'stream'=>['txt','pdf'],
 	    'image' => ['bmp','jpg','jpeg','png','gif'],
 	    'video5'=>['mp4','webm','mkv'],
-	    'video'=>[],
-	    'video2'=>['avi','mpg', 'mpeg', 'rm', 'rmvb', 'mov', 'wmv', 'asf', 'ts', 'flv'],
+	    'video'=>['avi','mpg', 'mpeg', 'rm', 'rmvb', 'mov', 'wmv', 'asf', 'ts', 'flv'],
 	    'audio'=>['ogg','mp3','wav'],
 	    'code'=>['html','htm','php', 'css', 'go','java','js','json','txt','sh','md'],
 	    'doc'=>['csv','doc','docx','odp','ods','odt','pot','potm','potx','pps','ppsx','ppsxm','ppt','pptm','pptx','rtf','xls','xlsx']
@@ -119,8 +118,7 @@ class AdminController{
 		$names = [
 			'stream'=>'直接输出(<5M)，走本服务器流量(stream)',
 			'image' =>'图片(image)',
-			'video'=>'Dplayer 视频(video)',
-			'video2'=>'Dplayer DASH 视频(video2)/个人版账户不支持',
+			'video'=>'Dplayer 视频(video),个人版本的OneDrive只支持少量视频格式',
 			'video5'=>'html5视频(video5)',
 			'audio'=>'音频播放(audio)',
 			'code'=>'文本/代码(code)',
