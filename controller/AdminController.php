@@ -161,6 +161,14 @@ class AdminController{
 	}
 
 	function install_0(){
+		// 若 config 与 cache 目录不存在则创建
+		if (!is_dir(ROOT.'config/')) {
+			mkdir(ROOT.'config/', 0700, false);
+		}
+		if (!is_dir(ROOT.'cache/')) {
+			mkdir(ROOT.'cache/', 0700, false);
+		}
+
 		$check['php'] = version_compare(PHP_VERSION,'5.5.0','ge');
 		$check['curl'] = function_exists('curl_init');
 		$check['config'] = is_writable(ROOT.'config/');
