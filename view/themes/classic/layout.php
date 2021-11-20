@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php _($title);?></title>
-	<link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
-	<script	src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+	<link rel="stylesheet" href="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/css/mdui.min.css">
+	<script src="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/js/mdui.min.js"></script>
 	<style>
 		.mdui-appbar .mdui-toolbar{
 			/*height:56px;*/

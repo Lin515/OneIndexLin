@@ -168,7 +168,7 @@ function file_ico($item) {
       <i class="mdui-icon mdui-fab-opened material-icons">mode_edit</i>
     </button>
     <div class="mdui-fab-dial">
-      <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="location.href='/?/admin'"><i class="mdui-icon material-icons">account_circle</i>
+      <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="window.open('/?/admin')"><i class="mdui-icon material-icons">account_circle</i>
       </button>
       <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue" onclick="thumb()"><i class="mdui-icon material-icons" id="format_list">format_list_bulleted</i>
       </button>
@@ -186,9 +186,9 @@ function file_ico($item) {
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script	src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-<script src="//<?echo $_SERVER["HTTP_HOST"]?>/statics/nexmoe.js"></script>
+<script src="<?php e(statics_cdn()); ?>jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script	src="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="<?php e(statics_cdn()); ?>clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script src="<?php e(statics_cdn()); ?>nexmoe.js"></script>
 
 <?php view::end('content');?>

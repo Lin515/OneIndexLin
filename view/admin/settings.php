@@ -32,6 +32,11 @@
 		  <h4>网站背景图<small> 开启伪静态后此处需使用完整地址</small></h4>
 		  <input class="mdui-textfield-input" type="text" name="site_background" value="<?php echo $config['site_background'];?>"/>
 		</div>
+
+		<div class="mdui-textfield">
+		  <h4>静态资源CDN地址<small> 请指定statics文件夹的所在地址，例如 https://cdn.jsdelivr.net/gh/Lin515/OneIndexLin/statics/ ，需以/结尾，若留空则使用本地资源</small></h4>
+		  <input class="mdui-textfield-input" type="text" name="statics_cdn" value="<?php echo $config['statics_cdn'];?>"/>
+		</div>
 		
 		<div class="mdui-textfield">
 		  <h4>ICP备案号</h4>

@@ -7,6 +7,7 @@ class AdminController{
 	  'password' => 'OneIndex',
 	  'style'=>'nexmoe',
 	  'site_background' => 'view/themes/nexmoe/background.jpg',
+	  'statics_cdn' => '',
 	  'icp_record' => '',
 	  'onedrive_root' =>'',
 	  'except_path' =>'',
@@ -62,6 +63,7 @@ class AdminController{
 			config('site_name', $_POST['site_name']);
 			config('style', $_POST['style']);
 			config('site_background', $_POST['site_background']);
+			config('statics_cdn', $_POST['statics_cdn']);
 			config('icp_record', $_POST['icp_record']);
 			config('onedrive_root', get_absolute_path($_POST['onedrive_root']));
 			config('except_path',$except_path);
@@ -177,7 +179,8 @@ class AdminController{
 			config('area',$_POST['area']);
 			return view::direct('?step=2');
 		}
-		$redirect_uri = 'https://'.$_SERVER['HTTP_HOST'].get_absolute_path(dirname($_SERVER['PHP_SELF']));
+		$pro = $_SERVER['HTTP_HOST']==='localhost' ? 'http' : 'https';
+		$redirect_uri = $pro.'://'.$_SERVER['HTTP_HOST'].get_absolute_path(dirname($_SERVER['PHP_SELF']));
 
 		$ru = "https://developer.microsoft.com/en-us/graph/quick-start?appID=_appId_&appName=_appName_&redirectUrl={$redirect_uri}&platform=option-php";
 		$deepLink = "/quickstart/graphIO?publicClientSupport=false&appName=oneindex&redirectUrl={$redirect_uri}&allowImplicitFlow=false&ru=".urlencode($ru);

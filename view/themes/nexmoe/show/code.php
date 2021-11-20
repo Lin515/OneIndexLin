@@ -39,8 +39,8 @@
 </div>
 <a href="<?php e($url);?>" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
 
-<script src="https://cdn.bootcss.com/ace/1.2.9/ace.js"></script>
-<script src="https://cdn.bootcss.com/ace/1.2.9/ext-language_tools.js"></script>
+<script src="<?php e(statics_cdn()); ?>ace@1.4.13/src/ace.js"></script>
+<script src="<?php e(statics_cdn()); ?>ace@1.4.13/src/ext-language_tools.js"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/ambiance");

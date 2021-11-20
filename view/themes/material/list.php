@@ -149,11 +149,7 @@ $(function () {
       <i class="mdui-icon mdui-fab-opened material-icons">mode_edit</i>
     </button>
     <div class="mdui-fab-dial">
-      <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink" onclick="location.href='/?/offline'"><i class="mdui-icon material-icons">cloud_upload</i>
-      </button>
-      <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red" onclick="addFavorite2()"><i class="mdui-icon material-icons">bookmark</i>
-      </button>
-      <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="location.href='/?/admin'"><i class="mdui-icon material-icons">account_circle</i>
+      <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="window.open('/?/admin')"><i class="mdui-icon material-icons">account_circle</i>
       </button>
     </div>
   </div>

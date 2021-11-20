@@ -5,15 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
 	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
 	<title>OneIndex 系统管理</title>
-	<link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
-  <script	src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+	<link rel="stylesheet" href="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/css/mdui.min.css">
+  <script src="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/js/mdui.min.js"></script>
 	<script>$ = mdui.JQ;</script>
 </head>
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar  mdui-theme-primary-indigo mdui-theme-accent-blue">
 <header class="mdui-appbar mdui-appbar-fixed">
   <div class="mdui-toolbar mdui-color-theme">
     <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></span>
-    <a href="./" target="_blank" class="mdui-typo-headline mdui-hidden-xs">OneIndex</a>
+    <a href="./" class="mdui-typo-headline mdui-hidden-xs">OneIndex</a>
     <div class="mdui-toolbar-spacer"></div>
     <a href="<?php echo $root?>?/logout"><i class="mdui-icon material-icons">&#xe8ac;</i> 登出</a>
   </div>

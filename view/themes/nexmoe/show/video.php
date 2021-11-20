@@ -3,22 +3,22 @@
 	$item['thumb'] = onedrive::thumbnail($item['path']);
 	view::begin('content');
 ?>
-<link class="dplayer-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+<link class="dplayer-css" rel="stylesheet" href="<?php e(statics_cdn()); ?>dplayer@1.26.0/dist/DPlayer.min.css">
 <?php
 	$ext = strtolower(pathinfo($item['name'], PATHINFO_EXTENSION));
 	$play_url = $item['downloadUrl'];
 	$type = "auto";
 	if ($ext == "flv") {
 		$type = "flv";
-		e('<script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>');
+		e('<script src="' . statics_cdn() . 'flv.js@1.5.0/dist/flv.min.js"></script>');
 	// 以下格式仅支持教育版和企业版
 	} else if (in_array($ext,["ts","avi","mpg","mpeg","rm","rmvb","mov","wmv","asf"])) {
 		$type = "dash";
 		$play_url =  str_replace("thumbnail","videomanifest",$item['thumb'])."&part=index&format=dash&useScf=True&pretranscode=0&transcodeahead=0";
-		e('<script src="https://cdn.jsdelivr.net/npm/dashjs@4.0.0-npm/dist/dash.all.min.js"></script>');
+		e('<script src="' . statics_cdn() . 'dashjs@4.0.0-npm/dist/dash.all.min.js"></script>');
 	}
 ?>
-<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
+<script src="<?php e(statics_cdn()); ?>dplayer@1.26.0/dist/DPlayer.min.js"></script>
 <div class="mdui-container-fluid">
 	<div class="nexmoe-item">
 	<div class="mdui-center" id="dplayer"></div>
