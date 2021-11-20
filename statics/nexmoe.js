@@ -74,7 +74,6 @@ function FilterChange() {
 	var filterKey = document.getElementById("filteredit").value.toUpperCase();
 	var dom_items = document.getElementsByClassName("filter");
 
-	document.getElementById("pending").style.display = "";
 	for(var i=0; i<dom_items.length; i++) {
 		var name = dom_items[i].getAttribute("data-sort-name");
 		if(name!=null && name.toUpperCase().indexOf(filterKey)==-1)
@@ -82,7 +81,6 @@ function FilterChange() {
 		else
 			dom_items[i].style.display = "";
 	}
-	document.getElementById("pending").style.display = "none";
 }
 $("#filteredit").on("change keyup",FilterChange);
 
@@ -99,13 +97,17 @@ function onClickHander(){
 function checkall(){
     var checkall = document.getElementById("checkall");
     var itemsbox = document.getElementsByName("itemid");
+	var dom_items = document.getElementsByClassName("filter");
+
     if (checkall.checked == false) {
         for (var i = 0; i < itemsbox.length; i++) {
-            itemsbox[i].checked = false;
+			if (dom_items[i].style.display == "") // 只对没有被隐藏的项目进行操作
+            	itemsbox[i].checked = false;
         }
     } else {
         for (var i = 0; i < itemsbox.length; i++) {
-            itemsbox[i].checked = true;
+			if (dom_items[i].style.display == "")
+            	itemsbox[i].checked = true;
         }
     }
     onClickHander();

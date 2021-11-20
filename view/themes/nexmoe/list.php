@@ -109,15 +109,12 @@ function file_ico($item) {
 			</li>
 			<?php endif;?>
 
-			<li class="mdui-list-item mdui-ripple" id="pending" style="display:none;"><div class="simple-spinner" id="loading"></div>文件加载中~~~</li>
-			
 			<?php foreach((array)$items as $item):?>
 				<?php if(!empty($item['folder'])):?>
 
 			<li class="mdui-list-item mdui-ripple filter" data-sort
 							data-sort-name="<?php echo $item['name'] ;?>"
 							id="<?php echo $item["id"] ?>" >
-				<div class="simple-spinner loading-gif" style="display: none;"></div>
 				<label class="mdui-checkbox">
 					<input type="checkbox" id="check" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
 					<i class="mdui-checkbox-icon"></i>
@@ -135,7 +132,6 @@ function file_ico($item) {
 			<li class="mdui-list-item file mdui-ripple filter" data-sort
 							data-sort-name="<?php echo $item['name'] ;?>"
 							id="<?php echo $item["id"] ?>" >
-				<div class="simple-spinner loading-gif" style="display: none;"></div>
 				<label class="mdui-checkbox">
 					<input type="checkbox" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
 					<i class="mdui-checkbox-icon"></i>
