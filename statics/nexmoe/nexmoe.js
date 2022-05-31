@@ -1,5 +1,29 @@
-// 右侧小菜单
-var inst1 = new mdui.Fab('#myFab');
+$ = mdui.JQ;
+
+$.fn.extend({
+    sortElements: function (comparator, getSortable) {
+        getSortable = getSortable || function () { return this; };
+
+        var placements = this.map(function () {
+            var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+
+            return function () {
+                parentNode.insertBefore(this, nextSibling);
+                parentNode.removeChild(nextSibling);
+            };
+        });
+
+        return [].sort.call(this, comparator).each(function (i) {
+            placements[i].call(getSortable.call(this));
+        });
+    }
+});
+
 $(function() {
 	$('.file a').each(function(){
 		$(this).on('click', function () {
@@ -22,6 +46,8 @@ $(function() {
     });
 });
 
+// 右侧小菜单
+var inst1 = new mdui.Fab('#myFab');
 // 切换为缩略图显示
 function thumb(){
 	if ($('#format_list').text() == "apps") {

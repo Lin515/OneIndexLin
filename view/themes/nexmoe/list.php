@@ -87,13 +87,18 @@ function file_ico($item) {
 <div class="nexmoe-item">
 	<div class="mdui-row">
 		<ul class="mdui-list">
+			<li class="mdui-list-item th">
+				<input class="mdui-textfield-input" type="text" id="filteredit" placeholder="搜索当前目录" autofocus />
+				<button class="mdui-btn mdui-ripple" id="sharebtn">获取链接</button>
+			</li>
 			<li class="mdui-list-item th" id="indexsort">
 				<label class="mdui-checkbox">
 					<input type="checkbox" value="" id="checkall" onclick="checkall()">
 					<i class="mdui-checkbox-icon"></i>
 				</label>
-				<input class="mdui-textfield-input" type="text" id="filteredit" placeholder="搜索当前目录" autofocus />
-				<button class="mdui-btn mdui-ripple" id="sharebtn">获取链接</button>
+				<div class="mdui-col-xs-12 mdui-col-sm-7">文件 <i class="mdui-icon material-icons icon-sort" data-sort="name" data-order="downward">expand_more</i></div>
+				<div class="mdui-col-sm-3 mdui-text-right">修改时间 <i class="mdui-icon material-icons icon-sort" data-sort="date" data-order="downward">expand_more</i></div>
+				<div class="mdui-col-sm-2 mdui-text-right">大小 <i class="mdui-icon material-icons icon-sort" data-sort="size" data-order="downward">expand_more</i></div>
 			</li>
 
 			<?php if($path != '/'):?>
@@ -113,8 +118,10 @@ function file_ico($item) {
 				<?php if(!empty($item['folder'])):?>
 
 			<li class="mdui-list-item mdui-ripple filter" data-sort
-							data-sort-name="<?php echo $item['name'] ;?>"
-							id="<?php echo $item["id"] ?>" >
+				data-sort-name="<?php echo $item['name'];?>"
+				data-sort-date="<?php echo $item['lastModifiedDateTime'];?>"
+				data-sort-size="<?php echo $item['size'];?>"
+				id="<?php echo $item["id"] ?>" >
 				<label class="mdui-checkbox">
 					<input type="checkbox" id="check" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
 					<i class="mdui-checkbox-icon"></i>
@@ -129,9 +136,11 @@ function file_ico($item) {
 				</a>
 			</li>
 				<?php else:?>
-			<li class="mdui-list-item file mdui-ripple filter" data-sort
-							data-sort-name="<?php echo $item['name'] ;?>"
-							id="<?php echo $item["id"] ?>" >
+			<li class="mdui-list-item mdui-ripple filter" data-sort
+				data-sort-name="<?php echo $item['name'];?>"
+				data-sort-date="<?php echo $item['lastModifiedDateTime'];?>"
+				data-sort-size="<?php echo $item['size'];?>"
+				id="<?php echo $item["id"] ?>" >
 				<label class="mdui-checkbox">
 					<input type="checkbox" value="<?php echo $item["id"] ?>" name="itemid" onclick="onClickHander()">
 					<i class="mdui-checkbox-icon"></i>
@@ -182,9 +191,9 @@ function file_ico($item) {
   </div>
 </div>
 
-<script src="<?php e(statics_cdn()); ?>jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="<?php e(statics_cdn()); ?>jquery@3.5.1/dist/jquery.min.js"></script>
 <script	src="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/js/mdui.min.js"></script>
 <script src="<?php e(statics_cdn()); ?>clipboard@2.0.6/dist/clipboard.min.js"></script>
-<script src="<?php e(statics_cdn()); ?>nexmoe.js"></script>
+<script src="<?php e(statics_cdn()); ?>nexmoe/nexmoe.js"></script>
 
 <?php view::end('content');?>
