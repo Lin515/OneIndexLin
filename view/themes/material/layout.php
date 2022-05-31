@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-	<title><?php e($title.' - '.config('site_name'));?></title>
+	<title><?php e($title . config('site_name'));?></title>
 	<link rel="stylesheet" href="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/css/mdui.min.css">
 	<script src="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/js/mdui.min.js"></script>
 	<style>
@@ -66,7 +66,7 @@
 <body class="mdui-theme-primary-blue-grey mdui-theme-accent-blue">
 	<header class="mdui-appbar mdui-color-theme">
 		<div class="mdui-toolbar mdui-container">
-			<a href="/" class="mdui-typo-headline"><?php e(config('site_name'));?></a>
+			<a href="/" class="mdui-typo-headline"><?php e(config('site_name_small'));?></a>
 			<?php foreach((array)$navs as $n=>$l):?>
 			<i class="mdui-icon material-icons mdui-icon-dark" style="margin:0;">chevron_right</i>
 			<a href="<?php e($l);?>"><?php e($n);?></a>
@@ -74,7 +74,7 @@
 			<!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>-->
 		</div>
 	</header>
-	
+
 	<div class="mdui-container">
     	<?php view::section('content');?>
   	</div>

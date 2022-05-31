@@ -1,4 +1,4 @@
-<?php 
+<?php
 define('VIEW_PATH', ROOT.'view/admin/');
 class AdminController{
 	static $default_config = array(
@@ -25,7 +25,7 @@ class AdminController{
 	    'doc'=>['csv','doc','docx','odp','ods','odt','pot','potm','potx','pps','ppsx','ppsxm','ppt','pptm','pptx','rtf','xls','xlsx']
 	  ),
 	);
-	
+
 	function __construct(){
 	}
 
@@ -46,7 +46,7 @@ class AdminController{
 		$message = false;
 
 		if($_POST){
-			
+
 			if ($this->cache_exists($_POST['cache_type'])) {
 				$message = '保存成功';
 				config('cache_type', $_POST['cache_type']);
@@ -61,6 +61,7 @@ class AdminController{
 				$except_path='';
 			}
 			config('site_name', $_POST['site_name']);
+			config('site_name_small', $_POST['site_name_small']);
 			config('style', $_POST['style']);
 			config('site_background', $_POST['site_background']);
 			config('statics_cdn', $_POST['statics_cdn']);
@@ -78,7 +79,7 @@ class AdminController{
 
 		return view::load('settings')->with('config', $config)->with('message', $message);
 	}
-    
+
 	/**
 	 * 判断缓存类型
 	 *
@@ -145,7 +146,7 @@ class AdminController{
 		}
 		return view::load('setpass')->with('message', $message);
 	}
-	
+
 	function install(){
 		if(!empty($_GET['code'])){
 			return $this->install_3();
@@ -154,7 +155,7 @@ class AdminController{
 			case 1:
 				return $this->install_1();
 			case 2:
-				return $this->install_2();	
+				return $this->install_2();
 			default:
 				return $this->install_0();
 		}
@@ -209,6 +210,6 @@ class AdminController{
 			config('@token', $data);
 		}
 		return view::load('install/install_3')->with('refresh_token',$data['refresh_token']);
-		
+
 	}
 }

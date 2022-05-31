@@ -130,7 +130,7 @@ class IndexController{
 			}
 		}
 
-		return view::load('list')->with('title', urldecode($this->url_path)=="/" ? "根目录" : $this->paths[count($this->paths)-1])
+		return view::load('list')->with('title', urldecode($this->url_path)=="/" ? "" : $this->paths[count($this->paths)-1] . ' - ')
 					->with('navs', $navs)
 					->with('path',join("/", array_map("rawurlencode", explode("/", $this->url_path)))  )
 					->with('root', $root)
