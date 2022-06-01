@@ -48,6 +48,9 @@ $(function() {
 
 // 右侧小菜单
 var inst1 = new mdui.Fab('#myFab');
+var lastShowMode = localStorage.getItem("lastShowMode")
+if (lastShowMode && lastShowMode == "apps")
+	thumb();
 // 切换为缩略图显示
 function thumb(){
 	if ($('#format_list').text() == "apps") {
@@ -70,6 +73,7 @@ function thumb(){
 			}
 		});
 	}
+    localStorage.setItem("lastShowMode", $('#format_list').text());
 }
 
 // 复制分享链接到剪切板
