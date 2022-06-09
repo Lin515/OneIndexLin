@@ -8,11 +8,15 @@
 	<link rel="stylesheet" href="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/css/mdui.min.css">
 	<link rel="stylesheet" href="<?php e(statics_cdn()); ?>nexmoe/nexmoe.css">
 	<script src="<?php e(statics_cdn()); ?>mdui@0.4.3/dist/js/mdui.min.js"></script>
-	<style>
-	body {
-		background-image:url("<?php echo config('site_background') ?>") !important;
-	}
-	</style>
+        <style>
+        body {
+        	background: linear-gradient(to bottom,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%),url(<?php echo config('site_background') ?>) no-repeat center center fixed;
+        	-webkit-background-size: cover;
+        	-moz-background-size: cover;
+		-o-background-size: cover;
+        	background-size: cover;
+        }
+        </style>
 </head>
 <body class="mdui-theme-primary-blue-grey mdui-theme-accent-blue">
 	<div class="mdui-container">
