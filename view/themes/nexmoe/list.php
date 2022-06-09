@@ -136,7 +136,7 @@ function file_ico($item) {
 				</a>
 			</li>
 				<?php else:?>
-			<li class="mdui-list-item mdui-ripple filter" data-sort
+			<li class="mdui-list-item file mdui-ripple filter" data-sort
 				data-sort-name="<?php echo $item['name'];?>"
 				data-sort-date="<?php echo $item['lastModifiedDateTime'];?>"
 				data-sort-size="<?php echo $item['size'];?>"
