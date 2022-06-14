@@ -2,6 +2,8 @@
 <?php 
 function getPHPExecutableFromPath() {
   $paths = explode(PATH_SEPARATOR, getenv('PATH'));
+  if (ini_get('open_basedir'))
+		return 'php';
   foreach ($paths as $path) {
     if (strstr($path, 'php.exe') && isset($_SERVER["WINDIR"]) && file_exists($path) && is_file($path)) {
         return $path;
