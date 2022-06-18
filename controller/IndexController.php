@@ -23,7 +23,6 @@ class IndexController{
 	function index(){
 		//是否404
 		$this->is404();
-
 		$this->is_password();
 
 		header("Expires:-1");
@@ -46,8 +45,9 @@ class IndexController{
  		}
 
 		$password = $this->get_content($this->items['.password']);
-		list($password) = explode("\n",$password);
-		$password = trim($password);
+		if (preg_match('/^.*$/', $password, $password) == 0)
+			return false;
+		$password = trim($password[0]);
 		unset($this->items['.password']);
 		if(!empty($password) && strcmp($password, $_COOKIE[md5($this->path)]) === 0||$_COOKIE['admin'] == md5(config('password').config('refresh_token'))){
 			return true;
